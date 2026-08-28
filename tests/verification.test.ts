@@ -19,6 +19,8 @@ describe('Verification & Authentication Toggles Tests', () => {
       expect(response.body.data).toHaveProperty('enableEmailAuth');
       expect(response.body.data).toHaveProperty('enableMobileAuth');
       expect(response.body.data).toHaveProperty('enableOAuthAuth');
+      expect(response.body.data).toHaveProperty('enableGoogleAuth');
+      expect(response.body.data).toHaveProperty('enableGithubAuth');
       expect(response.body.data).toHaveProperty('requireEmailVerification');
       expect(response.body.data).toHaveProperty('requireMobileVerification');
     });

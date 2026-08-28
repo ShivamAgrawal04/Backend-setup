@@ -95,29 +95,29 @@ router.post(
 );
 
 // Google OAuth Routes
-router.get('/google', checkFeatureEnabled('oauth'), asyncHandler(AuthController.googleAuthUrl));
+router.get('/google', checkFeatureEnabled('google'), asyncHandler(AuthController.googleAuthUrl));
 router.get(
   '/google/callback',
-  checkFeatureEnabled('oauth'),
+  checkFeatureEnabled('google'),
   asyncHandler(AuthController.googleCallback),
 );
 router.post(
   '/google/token',
-  checkFeatureEnabled('oauth'),
+  checkFeatureEnabled('google'),
   validate(googleTokenExchangeSchema),
   asyncHandler(AuthController.googleTokenExchange),
 );
 
 // GitHub OAuth Routes
-router.get('/github', checkFeatureEnabled('oauth'), asyncHandler(AuthController.githubAuthUrl));
+router.get('/github', checkFeatureEnabled('github'), asyncHandler(AuthController.githubAuthUrl));
 router.get(
   '/github/callback',
-  checkFeatureEnabled('oauth'),
+  checkFeatureEnabled('github'),
   asyncHandler(AuthController.githubCallback),
 );
 router.post(
   '/github/token',
-  checkFeatureEnabled('oauth'),
+  checkFeatureEnabled('github'),
   validate(githubTokenExchangeSchema),
   asyncHandler(AuthController.githubTokenExchange),
 );

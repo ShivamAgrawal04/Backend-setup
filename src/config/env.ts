@@ -27,6 +27,8 @@ const envSchema = z.object({
   ENABLE_EMAIL_AUTH: z.string().transform((val) => val === 'true'),
   ENABLE_MOBILE_AUTH: z.string().transform((val) => val === 'true'),
   ENABLE_OAUTH_AUTH: z.string().transform((val) => val === 'true'),
+  ENABLE_GOOGLE_AUTH: z.string().transform((val) => val === 'true'),
+  ENABLE_GITHUB_AUTH: z.string().transform((val) => val === 'true'),
   REQUIRE_EMAIL_VERIFICATION: z.string().transform((val) => val === 'true'),
   REQUIRE_MOBILE_VERIFICATION: z.string().transform((val) => val === 'true'),
 

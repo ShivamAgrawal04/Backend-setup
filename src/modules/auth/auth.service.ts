@@ -450,9 +450,8 @@ export class AuthService {
     });
 
     if (!user) {
-      // Return success to prevent email enumeration attacks
       return {
-        message: 'If an account exists with this email, a verification link has been sent.',
+        message: 'No account found with this email address.',
       };
     }
 
@@ -462,7 +461,12 @@ export class AuthService {
 
     await this.sendEmailVerificationToken(user.id, user.email!);
 
-    return { message: 'If an account exists with this email, a verification link has been sent.' };
+    return {
+      message:
+        env.NODE_ENV === 'development'
+          ? 'Email was not sent in development mode because SMTP is not configured. Check the backend terminal for the verification link.'
+          : 'Verification email has been sent successfully.',
+    };
   }
 
   public static async sendMobileOtp(input: SendMobileOtpInput) {
@@ -484,7 +488,10 @@ export class AuthService {
     await SmsService.sendOtp(input.phone, otpCode);
 
     return {
-      message: 'OTP sent successfully to your mobile number',
+      message:
+        env.NODE_ENV === 'development'
+          ? 'SMS was not sent in development mode. Check the backend terminal for your OTP.'
+          : 'OTP sent successfully to your mobile number',
       expiresIn: '10m',
     };
   }
@@ -556,6 +563,8 @@ export class AuthService {
       enableEmailAuth: env.ENABLE_EMAIL_AUTH,
       enableMobileAuth: env.ENABLE_MOBILE_AUTH,
       enableOAuthAuth: env.ENABLE_OAUTH_AUTH,
+      enableGoogleAuth: env.ENABLE_GOOGLE_AUTH,
+      enableGithubAuth: env.ENABLE_GITHUB_AUTH,
       requireEmailVerification: env.REQUIRE_EMAIL_VERIFICATION,
       requireMobileVerification: env.REQUIRE_MOBILE_VERIFICATION,
     };

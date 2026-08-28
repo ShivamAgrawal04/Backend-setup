@@ -89,6 +89,13 @@ Before running the application, ensure you have installed:
    ```
 
 4. **Initialize Database Schema**:
+   Start the Docker PostgreSQL database first:
+
+   ```bash
+   docker compose up -d
+   ```
+
+   The database is available at `localhost:5437`.
    Push Drizzle table definitions to PostgreSQL:
 
    ```bash
@@ -124,6 +131,9 @@ All environment variables are validated at startup using Zod in `@/config/env.ts
 | `GITHUB_CLIENT_ID`       | GitHub OAuth Client ID                            | -                                                   | For GitHub Auth |
 | `GITHUB_CLIENT_SECRET`   | GitHub OAuth Client Secret                        | -                                                   | For GitHub Auth |
 | `GITHUB_CALLBACK_URL`    | GitHub OAuth redirect URI                         | `http://localhost:5000/api/v1/auth/github/callback` | For GitHub Auth |
+| `ENABLE_OAUTH_AUTH`      | Master switch for OAuth authentication            | `false`                                             | Yes            |
+| `ENABLE_GOOGLE_AUTH`     | Enable Google authentication independently         | `false`                                             | Yes            |
+| `ENABLE_GITHUB_AUTH`     | Enable GitHub authentication independently         | `false`                                             | Yes            |
 
 ---
 

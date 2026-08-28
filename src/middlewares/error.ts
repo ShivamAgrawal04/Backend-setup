@@ -28,7 +28,7 @@ export const errorHandler = (
     statusCode = 400;
     message = 'Malformed request payload.';
   } else {
-    message = err.message || message;
+    message = env.NODE_ENV === 'development' ? err.message || message : 'Internal Server Error';
   }
 
   if (env.NODE_ENV !== 'test' && statusCode === 500) {
